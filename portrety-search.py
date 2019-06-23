@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-PAGES_START = 0
-PAGES = 100
+PAGES_START = 80
+PAGES = 90
 
 output = []
 errors = []
@@ -28,24 +28,16 @@ for page in range(PAGES_START,PAGES):
             title = ul.findAll('img')[0]['title']
             output.append('{0}, {1}'.format(title,downloadUrl))
         elif downloadUrl.startswith('http://media.rozhlas.cz'):
-            title = ul.find('div',class_='title').text
+            title = title = ul.find('div',class_='title').text
             output.append('{0}, {1}'.format(title,downloadUrl)) 
         else:
             print('!!! Unknown format of download URL, offset {0}, item {1}'.format(offset, item))
             print(ul)
         item +=1
 
-print(output)
+for line in output:
+    print(line)
 print(len(output))
 
 print(errors)
 print(len(errors))
-
-
-        
-
-
-#print(uls)
-
-
-
